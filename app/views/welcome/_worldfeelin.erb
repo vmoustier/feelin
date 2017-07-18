@@ -1,11 +1,12 @@
 <div class="jumbotron">
-  <h1>How the World feel?</h1>
+  <h1>How the World feels?</h1>
   <% worldmood = UserMood.group(:mood_id).count %>
   <% worldmood = worldmood.sort_by {|k,v| v}.reverse %>
   <h2><%= Mood.find(worldmood[0][0]).title %></h2>
-  
-  <% worldmood.each do |m, q| %>
-    <p><small><%= Mood.find(m).title %> :   <%= q %></small></p>
+  <% if (current_user && current_user.role_id == 2) %>
+    <% worldmood.each do |m, q| %>
+      <p><small><%= Mood.find(m).title %> :   <%= q %></small></p>
+    <% end %>
   <% end %>
   
   <p><a class="btn btn-primary btn-lg" href="moods" role="button">Share your feeling</a></p>
