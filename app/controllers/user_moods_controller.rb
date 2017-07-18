@@ -25,17 +25,38 @@ class UserMoodsController < ApplicationController
   # POST /user_moods.json
   def create
     @user_mood = UserMood.new(user_mood_params)
+    @user_mood.user_id = current_user.id
 
     respond_to do |format|
       if @user_mood.save
-        format.html { redirect_to @user_mood, notice: 'User mood was successfully created.' }
+        format.html { redirect_to @user_mood, notice: 'Thanks for sharing your feeling!' }
         format.json { render :show, status: :created, location: @user_mood }
       else
-        format.html { render :new }
-        format.json { render json: @user_mood.errors, status: :unprocessable_entity }
+        render moods_path
+        #format.html { render :new }
+        #format.json { render json: @user_mood.errors, status: :unprocessable_entity }
       end
     end
   end
+  
+  def add_mood
+    @user = User.find(params[:user_id])
+    @mood = Mood.find(params[:mood_id])
+    @user_mood = UserMood.new(user_id: @user.id, mood_id: @mood.id)
+
+    #respond_to do |format|
+      if @user_mood.save
+        #format.html { redirect_to @moods, notice: 'Thanks for sharing your feeling!' }
+        redirect_to moods_path, notice: "Thanks for sharing your feeling!"
+        #format.json { render :moods, status: :created, location: @user_mood }
+      else
+        render moods_path
+        #format.html { render :new }
+        #format.json { render json: @user_mood.errors, status: :unprocessable_entity }
+      end
+    #end
+  end
+
 
   # PATCH/PUT /user_moods/1
   # PATCH/PUT /user_moods/1.json

@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   
-  helper_method :require_admin
+  helper_method :require_admin, :is_admin
+  
+  def is_admin?
+    current_user.role_id = 2
+  end
   
   def require_admin
     if (current_user.role_id != 2)
