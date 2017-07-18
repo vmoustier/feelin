@@ -7,6 +7,9 @@ gem 'rails', '4.2.5'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+#gem 'geokit-rails'
+gem 'geocoder'
+#gem 'spatial_adapter'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
