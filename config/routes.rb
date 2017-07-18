@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :user_moods
+  resources :moods
+  devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations'
+  }
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
