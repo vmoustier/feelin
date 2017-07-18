@@ -47,7 +47,7 @@ class UserMoodsController < ApplicationController
     #respond_to do |format|
       if @user_mood.save
         #format.html { redirect_to @moods, notice: 'Thanks for sharing your feeling!' }
-        redirect_to moods_path, notice: "Thanks for sharing your feeling!"
+        redirect_to root_path, notice: "Thanks for sharing your feeling!"
         #format.json { render :moods, status: :created, location: @user_mood }
       else
         render moods_path
