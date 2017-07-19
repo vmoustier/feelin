@@ -4,6 +4,7 @@
   <% worldmood = worldmood.sort_by {|k,v| v}.reverse %>
   <h4>Over <%= UserMood.count %> persons the world feels </h2>
   <h2><%= Mood.find(worldmood[0][0]).title %></h2>
+  <dd><%= image_tag(Mood.find(worldmood[0][0]).images[0].picture.url, size: "200x200") if Mood.find(worldmood[0][0]).images[0].picture? %></dd>
   <% if (current_user && current_user.role_id == 2) %>
     <% worldmood.each do |m, q| %>
       <p><small><%= Mood.find(m).title %> :   <%= q %></small></p>

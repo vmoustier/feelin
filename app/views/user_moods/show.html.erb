@@ -1,14 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = UserMood -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+  
+  <% if (current_user && current_user.role_id == 2) %>
 
-<p>
-  <strong>User:</strong>
-  <%= @user_mood.user_id %>
-</p>
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+    <dd><%= @user_mood.user_id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:mood_id) %>:</strong></dt>
+    <dd><%= @user_mood.mood_id %></dd>
+  </dl>
+  
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                user_moods_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_user_mood_path(@user_mood), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                user_mood_path(@user_mood),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
 
-<p>
-  <strong>Mood:</strong>
-  <%= @user_mood.mood_id %>
-</p>
-
-<%= link_to 'Edit', edit_user_mood_path(@user_mood) %> |
-<%= link_to 'Back', user_moods_path %>
+<% else %>
+    <%= flash[:danger] = "You need to be admin to perform those action!" %>
+<% end %>

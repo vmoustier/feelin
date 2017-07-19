@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :images
   match '/users',   to: 'users#index',   via: 'get'
   
   resources :user_moods

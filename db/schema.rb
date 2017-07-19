@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718125942) do
+ActiveRecord::Schema.define(version: 20170719115954) do
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "picture"
+    t.integer  "mood_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "images", ["mood_id"], name: "index_images_on_mood_id"
 
   create_table "moods", force: :cascade do |t|
     t.string   "title"

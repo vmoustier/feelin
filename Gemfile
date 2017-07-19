@@ -11,6 +11,10 @@ gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 #gem 'geokit-rails'
 gem 'geocoder'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 #gem 'spatial_adapter'
 
 # Use SCSS for stylesheets
