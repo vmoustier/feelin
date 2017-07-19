@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '/users',   to: 'users#index',   via: 'get'
+  
   resources :user_moods
   resources :moods
   devise_for :users, controllers: {
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
   }
   root 'welcome#index'
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

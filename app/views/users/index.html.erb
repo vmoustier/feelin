@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<% if (current_user && current_user.role_id == 2) %>
+  <table class="table table-striped">
+   <thead>
+      <tr>
+        <th>Email</th>
+        <th>Creation date</th>
+        <th>Last sign in</th>
+        <th>Count</th>
+        <th>Confirmation</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+        <% @users = User.all %>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.to_formatted_s(:short) %></td>
+          <td><%= user.current_sign_in_at.to_formatted_s(:short) %></td>
+          <td><%= user.sign_in_count %></td>
+          <td><%= user.confirmed_at.to_formatted_s(:short) %></td>
+          <td><%= link_to 'Show ', root_path %></td>
+          <td><%= link_to 'Edit ', root_path %></td>
+          <td><%= link_to 'Destroy', root_path %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table> 
+  <br>
+<% else %>
+    <%= flash[:danger] = "You need to be admin to perform those action!" %>
+<% end %>
+
+<div class="PAGEFOOTER"></div>
