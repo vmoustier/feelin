@@ -21,9 +21,13 @@
         <tr>
           <td><%= user.email %></td>
           <td><%= user.created_at.to_formatted_s(:short) %></td>
-          <td><%= user.current_sign_in_at.to_formatted_s(:short) %></td>
+          <td><% if user.current_sign_in_at? then %>
+                <%= user.current_sign_in_at.to_formatted_s(:short) %>
+              <% end %></td>
           <td><%= user.sign_in_count %></td>
-          <td><%= user.confirmed_at.to_formatted_s(:short) %></td>
+          <td><% if user.confirmed_at? then %>
+            <%= user.confirmed_at.to_formatted_s(:short) %>
+          <% end %></td>
           <td><%= link_to 'Show ', root_path %></td>
           <td><%= link_to 'Edit ', root_path %></td>
           <td><%= link_to 'Destroy', root_path %></td>
