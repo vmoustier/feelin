@@ -4,7 +4,7 @@ class UserMoodsController < ApplicationController
   # GET /user_moods
   # GET /user_moods.json
   def index
-    @user_moods = UserMood.all
+    @user_moods = UserMood.order("created_at desc").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /user_moods/1

@@ -2,6 +2,7 @@
   <h1>How the World feels?</h1>
   <% worldmood = UserMood.group(:mood_id).count %>
   <% worldmood = worldmood.sort_by {|k,v| v}.reverse %>
+  <h4>Over <%= UserMood.count %> persons the world feels </h2>
   <h2><%= Mood.find(worldmood[0][0]).title %></h2>
   <% if (current_user && current_user.role_id == 2) %>
     <% worldmood.each do |m, q| %>
@@ -11,9 +12,3 @@
   
   <p><a class="btn btn-primary btn-lg" href="moods" role="button">Share your feeling</a></p>
 </div>
-
-
-
-
-  
-  
